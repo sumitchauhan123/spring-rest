@@ -1,5 +1,7 @@
 package com.springrest.springrest.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,7 +27,13 @@ public class SpringController {
             return firstName1+" "+lastName1;
     }
     @PostMapping("json")
+    @ResponseStatus(HttpStatus.CREATED)
     public String JsonReceiver(@RequestBody String jsondata){
         return jsondata;
+    }
+
+    @GetMapping("greetings")
+    public ResponseEntity<String> getGreetings(){
+        return ResponseEntity.ok().header("name","sumit chauhan").body("Hello world");
     }
 }
